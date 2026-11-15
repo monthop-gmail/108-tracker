@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect id="bg" width="512" height="512" rx="112" fill="#33404d"/>
+  <g id="fg">
+    <rect x="92" y="92" width="152" height="152" rx="38" fill="#2f7d6d"/>
+    <rect x="268" y="92" width="152" height="152" rx="38" fill="#2f5fa8"/>
+    <rect x="92" y="268" width="152" height="152" rx="38" fill="#c2621f"/>
+    <rect x="268" y="268" width="152" height="152" rx="38" fill="#2e7d8c"/>
+    <g fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <g transform="translate(120 120) scale(4)"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></g>
+      <g transform="translate(296 120) scale(4)"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 12h6"/></g>
+      <g transform="translate(120 296) scale(4)"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L4 17l3 3 5.3-5.3a4 4 0 0 0 5.4-5.4l-2.6 2.6-2.4-.6-.6-2.4z"/></g>
+      <g transform="translate(296 296) scale(4)"><path d="M4 10h16l-1.5 9a1 1 0 0 1-1 .9H6.5a1 1 0 0 1-1-.9z"/><path d="M8 10l3-6M16 10l-3-6"/></g>
+    </g>
+  </g>
+</svg>

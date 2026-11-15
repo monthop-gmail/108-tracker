@@ -1,0 +1,30 @@
+{
+  "name": "108-tracker",
+  "version": "1.0.0",
+  "private": true,
+  "description": "แอปบันทึกเรื่องร้อยแปดในชีวิตในแอปเดียว — สุขภาพ ค่าใช้จ่าย ดูแลอุปกรณ์ ของในบ้าน — แยกเป็นโมดูล บน Cloudflare Workers + D1",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "npm run db:migrate:remote && wrangler deploy",
+    "db:migrate:local": "wrangler d1 migrations apply DB --local",
+    "db:migrate:remote": "wrangler d1 migrations apply DB --remote",
+    "typecheck": "tsc --noEmit"
+  },
+  "cloudflare": {
+    "bindings": {
+      "APP_PASSWORD": {
+        "description": "รหัสผ่านสำหรับเข้าแอป **อย่างน้อย 8 ตัว** (Password to sign in to the app, at least 8 characters)."
+      },
+      "DB": {
+        "description": "ฐานข้อมูลเก็บข้อมูลทุกโมดูล — ระบบสร้างให้อัตโนมัติ (D1 database, created automatically)."
+      }
+    }
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^5.20261110.1",
+    "typescript": "^7.0.2",
+    "wrangler": "^4.160.1"
+  }
+}

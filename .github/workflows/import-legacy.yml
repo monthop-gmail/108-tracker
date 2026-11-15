@@ -1,0 +1,29 @@
+name: Import data from old apps
+
+# ย้าย/ซิงก์ข้อมูลจากแอปเดิม (health-tracker, bill-tracker, maintenance-tracker) เข้า 108-tracker อีกครั้ง
+# - รันซ้ำได้: แถวที่แก้ในแอปใหม่ภายหลัง (ใหม่กว่า) จะไม่ถูกทับ
+# - ใช้ช่วงที่ยังใช้แอปเดิมคู่กันอยู่ ถ้าเลิกใช้แอปเดิมแล้วไม่ต้องรัน
+#   (ข้อควรระวัง: ถ้าลบอุปกรณ์/รายการ/ยาในแอปใหม่ไปแล้ว การซิงก์จะดึงของจากแอปเดิมกลับมา)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Ensure D1 database
+        run: node scripts/ensure-d1.mjs
+      - name: Apply migrations
+        run: npm run db:migrate:remote
+      - name: Import
+        run: node scripts/import-legacy.mjs
